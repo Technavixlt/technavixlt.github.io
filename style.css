@@ -1,88 +1,48 @@
-/* === GLOBAL RESET === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0f0f0f;
-  color: #e0e0e0;
-  min-height: 100vh;
+  background: #111;
+  color: #eee;
+  font-family: 'Segoe UI', sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-/* === HEADINGS === */
-h1, h2 {
-  color: #00ffe0;
-  text-shadow: 0 0 6px #00ffe0;
-  margin-bottom: 20px;
-}
-
-/* === FORM STYLING === */
-form {
-  background: #1a1a1a;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 255, 224, 0.15);
+.container {
   max-width: 400px;
   width: 100%;
+  padding: 2rem;
+  background: #1e1e1e;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.1);
+  text-align: center;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"] {
+input, textarea, button {
+  display: block;
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  padding: 0.7rem;
+  margin-top: 1rem;
   border: none;
   border-radius: 8px;
-  background: #2a2a2a;
-  color: #e0e0e0;
-  font-size: 16px;
-  transition: background 0.3s;
+  font-size: 1rem;
 }
 
-input:focus {
-  background: #333;
-  outline: 2px solid #00ffe0;
-}
-
-/* === BUTTON STYLING === */
 button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
   background: #00ffe0;
   color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
   transition: background 0.3s;
 }
 
 button:hover {
-  background: #00c9b2;
+  background: #00bbaa;
 }
 
-/* === LINKS === */
 a {
-  margin-top: 20px;
   display: inline-block;
-  color: #888;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-
-a:hover {
+  margin-top: 1rem;
   color: #00ffe0;
+  text-decoration: none;
 }

@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Manage Your Card</h2>
+    <input type="text" id="searchId" placeholder="Enter Card ID" />
+    <button onclick="lookupCard()">Lookup</button>
+    <div id="cardInfo"></div>
+    <a href="index.html">← Back</a>
+  </div>
 
+  <script>
+    async function lookupCard() {
+      const id = document.getElementById('searchId').value;
+      const res = await fetch(`https://your-backend-url.onrender.com/manage/${id}`);
+      const data = await res.json();
+
+      if (data.error) {
+        document.getElementById('cardInfo').textContent = data.error;
+      } else {
+        document.getElementById('cardInfo').innerHTML = `
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Points:</strong> ${data.points}</p>
+          <p><strong>Cash Value:</strong> €${data.cash}</p>
+          <p><strong>Activated:</strong> ${data.activationDate}</p>
+          <p><strong>Last Visit:</strong> ${data.lastVisit}</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,9 +1,88 @@
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f0f0f0;
+/* === GLOBAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-input, button {
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f0f;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* === HEADINGS === */
+h1, h2 {
+  color: #00ffe0;
+  text-shadow: 0 0 6px #00ffe0;
+  margin-bottom: 20px;
+}
+
+/* === FORM STYLING === */
+form {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 255, 224, 0.15);
+  max-width: 400px;
+  width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
   margin: 10px 0;
-  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+input:focus {
+  background: #333;
+  outline: 2px solid #00ffe0;
+}
+
+/* === BUTTON STYLING === */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #00ffe0;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #00c9b2;
+}
+
+/* === LINKS === */
+a {
+  margin-top: 20px;
+  display: inline-block;
+  color: #888;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #00ffe0;
 }

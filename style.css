@@ -1,9 +1,8 @@
-/* Modern, clean style */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0f0f0f;
-  color: #ffffff;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #222;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,19 +11,18 @@ body {
 
 .container {
   text-align: center;
-  padding: 20px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   max-width: 400px;
+  width: 90%;
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #00ffe7;
-}
-
-p {
-  color: #bbbbbb;
   margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
 }
 
 .button-group {
@@ -35,16 +33,14 @@ p {
 
 .button {
   display: block;
-  background: #00ffe7;
-  color: #000;
+  background-color: #007bff;
+  color: white;
   padding: 15px;
   text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.3s;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 .button:hover {
-  background: #00d5c3;
-  transform: scale(1.05);
+  background-color: #0056b3;
 }

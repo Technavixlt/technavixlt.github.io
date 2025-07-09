@@ -2,17 +2,220 @@
 <html lang="lt">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kortelės Portalas</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin Kingdom Services</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+    }
+
+    .language-select button {
+      margin-right: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Kortelės Portalas</h1>
-    <div class="button-group">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCi0EPbNp2_lM-mkzIIPFSW9LFHaYDRjuJTL-xtNcjf2ywVg/viewform?usp=dialog" class="button" target="_blank">📦 Užsakyti Kortelę</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKudiNGDyvGwzbum-SLgd5vpKRcIcWw-uf-O3Mn7txQEEkoQ/viewform?usp=dialog" class="button" target="_blank">✔️ Aktyvuoti Kortelę</a>
-    </div>
+
+  <!-- Services Overview -->
+  <div class="section">
+    <h2 class="center">Services</h2>
+    <ul>
+      <li><strong>🛒 Order or activate sales cards</strong> – Contact us directly.</li>
+      <li><strong>🛠 Request repair</strong> – <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVOeugjZrQjX68uABWOndHIqn5uwPzyVJDGtbx--ckeGGiJA/viewform?usp=dialog" target="_blank">Submit repair request form</a></li>
+    </ul>
   </div>
+
+  <!-- Review Section -->
+  <div class="section">
+    <h2 class="center">Palikite atsiliepimą apie paslaugas</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQ2G2snJXhXM479lPHztG8BSpLH7aRW34J6cabiT_qarDCQw/viewform?usp=sf_link"></iframe>
+  </div>
+
+  <!-- Drone Flight Request -->
+  <div class="section">
+    <h2 id="title" class="center">Pasirinkite kalbą / Choose your language</h2>
+    <div class="language-select center">
+      <button onclick="setLang('lt')">Lietuvių</button>
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ru')">Русский</button>
+    </div>
+
+    <form id="droneForm" class="hidden" method="POST" action="https://formspree.io/f/xgvezjqw">
+      <p id="disclaimer"></p>
+
+      <label id="qualityLabel" for="quality"></label>
+      <select name="quality" id="quality" required>
+        <option value="1080p">1080p</option>
+        <option value="2.7k">2.7K</option>
+        <option value="4k">4K</option>
+      </select>
+
+      <label id="distanceLabel" for="distance"></label>
+      <input type="number" id="distance" name="distance_km" min="0" max="15" required oninput="calcDistancePrice()" placeholder="0–15">
+      <p><strong id="distancePrice"></strong></p>
+
+      <label id="nameLabel" for="fullname"></label>
+      <input type="text" name="fullname" id="fullname" required>
+
+      <label id="addressLabel" for="address"></label>
+      <input type="text" name="address" id="address" required>
+
+      <label id="urgencyLabel" for="urgency"></label>
+      <select name="urgency" id="urgency">
+        <option value="normal">Normal</option>
+        <option value="urgent">Urgent (+5–10%)</option>
+      </select>
+
+      <label id="dateLabel" for="flightdate"></label>
+      <input type="date" name="flightdate" id="flightdate" required>
+
+      <label id="phoneLabel" for="phone"></label>
+      <input type="tel" name="phone" id="phone" required>
+
+      <label id="emailLabel" for="email"></label>
+      <input type="email" name="email" id="email" required>
+
+      <label id="contactLabel" for="contactMethod"></label>
+      <select name="contactMethod" id="contactMethod">
+        <option value="sms">SMS</option>
+        <option value="email">Email</option>
+      </select>
+
+      <label>
+        <input type="checkbox" name="confirm13yo" required>
+        <span id="checkboxText"></span>
+      </label>
+
+      <label id="paymentLabel" for="payment"></label>
+      <select name="payment" id="payment" required>
+        <option value="cash">Cash</option>
+        <option value="bank">Bank transfer</option>
+      </select>
+
+      <br><br>
+      <button type="submit" id="submitBtn">Pateikti</button>
+    </form>
+  </div>
+
+  <script>
+    const translations = {
+      lt: {
+        title: "Pasirinkite kalbą",
+        disclaimer: "❗ Visi skrydžiai vykdomi 13-mečio. Skrydžio metu galite susitarti dėl norimo kampo ar nustatymų.",
+        qualityLabel: "Pasirinkite vaizdo kokybę:",
+        distanceLabel: "Atstumas nuo Šilainių (km, max 15):",
+        nameLabel: "Pilnas vardas:",
+        addressLabel: "Adresas:",
+        urgencyLabel: "Skubumas:",
+        dateLabel: "Pageidaujama skrydžio data:",
+        phoneLabel: "Telefono numeris:",
+        emailLabel: "El. paštas:",
+        contactLabel: "Kontaktinis būdas:",
+        checkboxText: "Patvirtinu, kad perskaičiau ir sutinku, jog darbas bus atliekamas 13-mečio.",
+        paymentLabel: "Apmokėjimas po atlikimo:",
+        submitBtn: "Pateikti",
+      },
+      en: {
+        title: "Choose your language",
+        disclaimer: "❗ All flights are performed by a 13-year-old. During the flight, you may negotiate and specify desired angles or settings.",
+        qualityLabel: "Select video quality:",
+        distanceLabel: "Distance from Šilainiai, Kaunas (km, max 15):",
+        nameLabel: "Full name:",
+        addressLabel: "Address:",
+        urgencyLabel: "Urgency:",
+        dateLabel: "Preferred flight date:",
+        phoneLabel: "Phone number:",
+        emailLabel: "Email:",
+        contactLabel: "Preferred contact method:",
+        checkboxText: "I confirm that I have read and understand the job will be done by a 13-year-old.",
+        paymentLabel: "Payment upon completion:",
+        submitBtn: "Submit",
+      },
+      ru: {
+        title: "Выберите язык",
+        disclaimer: "❗ Все полеты выполняются 13-летним ребенком. Во время полета вы можете указать нужные углы и настройки.",
+        qualityLabel: "Выберите качество видео:",
+        distanceLabel: "Расстояние от Шялайняй, Каунас (км, максимум 15):",
+        nameLabel: "Полное имя:",
+        addressLabel: "Адрес:",
+        urgencyLabel: "Срочность:",
+        dateLabel: "Желаемая дата полета:",
+        phoneLabel: "Номер телефона:",
+        emailLabel: "Эл. почта:",
+        contactLabel: "Предпочтительный способ связи:",
+        checkboxText: "Я подтверждаю, что ознакомлен и согласен с тем, что работу выполнит 13-летний ребенок.",
+        paymentLabel: "Оплата после выполнения:",
+        submitBtn: "Отправить",
+      }
+    };
+
+    function setLang(lang) {
+      const t = translations[lang] || translations.lt;
+      document.getElementById('title').innerText = t.title;
+      document.getElementById('disclaimer').innerText = t.disclaimer;
+      document.getElementById('qualityLabel').innerText = t.qualityLabel;
+      document.getElementById('distanceLabel').innerText = t.distanceLabel;
+      document.getElementById('nameLabel').innerText = t.nameLabel;
+      document.getElementById('addressLabel').innerText = t.addressLabel;
+      document.getElementById('urgencyLabel').innerText = t.urgencyLabel;
+      document.getElementById('dateLabel').innerText = t.dateLabel;
+      document.getElementById('phoneLabel').innerText = t.phoneLabel;
+      document.getElementById('emailLabel').innerText = t.emailLabel;
+      document.getElementById('contactLabel').innerText = t.contactLabel;
+      document.getElementById('checkboxText').innerText = t.checkboxText;
+      document.getElementById('paymentLabel').innerText = t.paymentLabel;
+      document.getElementById('submitBtn').innerText = t.submitBtn;
+
+      document.querySelector('.language-select').classList.add('hidden');
+      document.getElementById('droneForm').classList.remove('hidden');
+    }
+
+    function calcDistancePrice() {
+      const km = parseFloat(document.getElementById("distance").value) || 0;
+      const price = km > 0 ? Math.round(km * 0.65 * 100) / 100 + " EUR" : "";
+      document.getElementById("distancePrice").innerText = price;
+    }
+  </script>
 </body>
 </html>
